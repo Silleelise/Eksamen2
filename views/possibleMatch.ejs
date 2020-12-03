@@ -1,0 +1,21 @@
+<h2>Possible match:</h2>
+<p>The person name: <%= user.name %></p>
+<br><br>
+The person is interested in: <p><%= user.interest %></p>
+
+<div>
+Like:  
+	<form action="/matches/<%= user.id %>/<%= user.name %>" method="POST">
+		<input type="hidden" name="what_to_do" id ="what_to_do" value="match">
+		<button type="submit"> here.</submit>
+	</form>
+</div>
+
+<div>
+Skip:  
+	<form action="/matches/<%= user.id %>/<%= user.name %>" method="POST">
+		<input type="hidden" name="what_to_do" id ="what_to_do" value="skip">
+		<button type="submit"> here.</submit>
+	</form>
+</div>
+

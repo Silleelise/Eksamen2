@@ -1,0 +1,12 @@
+<h2>Matches</h2>
+<% matches.forEach(function(matches) { %>
+		<% if (matches.ori_user_name == user_name) { %>
+	        <li>
+	            <strong><%= matches.match_user_name %></strong>
+	        </li>
+        <% } else { %>
+        	<li>
+	            <strong><%= matches.ori_user_name %></strong>
+	        </li>
+        <% }%>
+    <% }); %>

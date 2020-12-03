@@ -1,0 +1,22 @@
+
+body {
+  background-color: dodgerblue;
+  color: white;
+}
+
+h2 {
+  text-align: center;
+  font-size: 60px;
+  text-shadow: 2px 2px #ff0000;
+  font-family: Raleway; 
+}
+
+.text {
+  font-family: 'Raleway', sans-serif;
+  float: left;
+  width: 50%;
+  text-align: left;
+  font-size: 25px;
+  color: white;
+  line-height: 150%;
+}
