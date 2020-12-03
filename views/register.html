@@ -1,27 +1,24 @@
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <link rel="stylesheet" type="text/css"   href="/css/style.css">
-<!------ Include the above in your HEAD tag ---------->
+    
+<!-- Login Form -->
+<div>
+  <h1>Dating site
+  <img src = "/images/love.png" width = 10%></img>
+  </h1>
+  <h2>Sign up now and start matching!</h2>
+</div>
 
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
-
-    <!-- Icon -->
-    <div class="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-    </div>
-
-    <!-- Login Form -->
     <form action="/register" method="POST">
-      <input type="text" id="name" class="fadeIn second" name="name" placeholder="Name">
+      <input type="text" id="name" class="fadeIn second" name="name" placeholder="Full name">
+
+      <br></br>
       
       <div>
-      <label for="cars">What gender are YOU:</label>
+      <label for="cars">Your gender</label>
     </div>
     <div>
-
+  
       <select name="gender" id="gender" required>
         <option value="" disabled>-- Choose --</option>
         <option value="male">Male</option>
@@ -29,6 +26,8 @@
         <option value="other">Other</option>
       </select>
     </div>
+
+    <br></br>
 
     <div>
 
@@ -45,16 +44,14 @@
       </select>
 
     </div>
+    <br></br>
 
-      <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email">
+      <input type="email" id="email" class="fadeIn second" name="email" placeholder="Email">
+      <br></br>
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
-      <input type="submit" class="fadeIn fourth" value="Create">
+      <br></br>
+      <input type="submit" class="fadeIn fourth" value="Create profile">
     </form>
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
 
   </div>
 </div>

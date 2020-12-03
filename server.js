@@ -6,8 +6,6 @@ var cors = require('cors');
 
 var allRoutes = require('./routes/web');
 
-
-
 var app = express();
 app.use(session({
 	secret: 'secret',
@@ -21,11 +19,8 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/views'));
 app.set('view engine', 'ejs');
 
-
-
 app.use('/', allRoutes);
 
 app.listen(3500);
 
 module.exports = app;
-

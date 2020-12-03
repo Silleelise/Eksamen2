@@ -1,6 +1,7 @@
+//
 var path = require('path');
 
-var config = require('../databaseConfig.js');
+var config = require('../databaseconfig.js');
 var con = config.connection;
 
 // Display detail page for a specific user.

@@ -1,7 +1,7 @@
 //var User = require('../models/user');
 var path = require('path');
 
-var config = require('../databaseConfig.js');
+var config = require('../databaseconfig.js');
 var con = config.connection;
 
 // Display list of all users.
@@ -18,12 +18,15 @@ exports.user_detail = function(req, res) {
 
 				var user = results[0];
 
-				res.render(path.join(__dirname + '/../views/profile'), {
+				req.session.interest = user.interest;
+				req.session.gender = user.gender;
+
+				res.render(path.join(__dirname + '/../views/profile.ejs'), {
 			        user: user
 			    });
 
 			} else {
-				res.send('Incorrect username and/or password!');
+				res.send('Incorrect Username and/or Password!');
 			}			
 			res.end();
 		});
@@ -65,11 +68,8 @@ exports.user_delete_get = function(req, res) {
 
 
 	if(request.session.loggedin == true) {
-
-		
 	}
 	else {
-		
 	}
 
     res.send('NOT IMPLEMENTED: user delete GET');

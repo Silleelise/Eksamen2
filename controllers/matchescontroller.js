@@ -1,7 +1,7 @@
 //var User = require('../models/user');
 var path = require('path');
 
-var config = require('../databaseConfig.js');
+var config = require('../databaseconfig.js');
 var con = config.connection;
 
 // Display list of all users.
@@ -15,16 +15,17 @@ exports.show_possible_match = function(req, res) {
 					return callback(user);
 				} 		
 			});
-   		}
-
+		   }
+		
    		var last_match_id = 0; 
 
    		fetchID(function(result){  
 		    last_match_id = result.last_match_check_id; 
 
 		    con.query('SELECT * FROM users WHERE interest = ? AND gender = ? AND id > ? ORDER BY id ASC', [req.session.gender, req.session.interest, last_match_id], function(error, results, fields) {
-				if (results.length > 0) {
 
+				if (results.length > 0) {
+					
 					var user = results[0];
 
 					res.render(path.join(__dirname + '/../views/possibleMatch'), {
@@ -88,7 +89,9 @@ exports.make_skip_match = function(req, res) {
 					   		checkMatch(function(match) {
 					   			if(match == 'no-match') {
 					   				var sql = "INSERT INTO matches (ori_user_id, match_user_id, ori_user_name, match_user_name) VALUES (?, ?, ?, ?)";
-									con.query(sql, [current_user.id, match_id, current_user.name, match_name], function (err, result) {});
+									con.query(sql, [current_user.id, match_id, current_user.name, match_name], function (err, result) {
+										console.log(err);
+									});
 					   			} else {
 					   				con.query('UPDATE matches SET is_a_match = 1 WHERE ori_user_id = ? AND match_user_id = ?', [match_id, current_user.id], function(error, results, fields) {});
 					   			}
@@ -131,7 +134,7 @@ exports.see_all_matches = function(req, res) {
 					if (results.length > 0) {
 						var matches = results;
 
-						res.render(path.join(__dirname + '/../views/matches'), {
+						res.render(path.join(__dirname + '/../views/matches.ejs'), {
 					        matches: matches,
 					        user_name: current_user.name
 					    });
