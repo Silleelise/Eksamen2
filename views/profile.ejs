@@ -1,11 +1,14 @@
 <h2>Profile</h2>
-<p><%= user.email %></p>
-<p><%= user.name %></p>
+<p>User email: <%= user.email %></p>
+<p>Username: <%= user.name %></p>
 <br><br>
-You are interested in: <p><%= user.interest %> - <a href="/matches/get-more">Get more matches here</a></p>
+<p>You are interested in: <%= user.interest %> 
+<br></br>
+<a href="/matches/get-more">Meet other singles here</p>
 <div>
-See all your matches <a href="/matches"> here. </a>
+<a href="/matches"> See all your matches </a>
 </div>
+<br></br>
 <div>
 <a href="/logout">Log out</a>
 </div>

@@ -1,6 +1,5 @@
 //var User = require('../models/user');
 var path = require('path');
-
 var config = require('../databaseconfig.js');
 var con = config.connection;
 
@@ -139,7 +138,8 @@ exports.see_all_matches = function(req, res) {
 					        user_name: current_user.name
 					    });
 
-					} 		
+					} 	
+					res.end();	
 				}); 
 		   	});
 

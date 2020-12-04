@@ -17,5 +17,9 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
   }
 }

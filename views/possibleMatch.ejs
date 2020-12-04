@@ -1,8 +1,9 @@
 <h2>Possible match:</h2>
 <p>The person name: <%= user.name %></p>
 <br><br>
-The person is interested in: <p><%= user.interest %></p>
-
+<p>The person is interested in: <%= user.interest %></p>
+ 
+<!-- Like -->
 <div>
 Like:  
 	<form action="/matches/<%= user.id %>/<%= user.name %>" method="POST">
@@ -11,6 +12,7 @@ Like:
 	</form>
 </div>
 
+<!-- Dislke -->
 <div>
 Skip:  
 	<form action="/matches/<%= user.id %>/<%= user.name %>" method="POST">

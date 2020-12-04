@@ -15,11 +15,9 @@ exports.user_detail = function(req, res) {
 	if(req.session.loggedin == true && req.session.email) {
 		con.query('SELECT * FROM users WHERE email = ?', [req.session.email], function(error, results, fields) {
 			if (results.length > 0) {
-
 				var user = results[0];
-
-				req.session.interest = user.interest;
 				req.session.gender = user.gender;
+				req.session.interest = user.interest;
 
 				res.render(path.join(__dirname + '/../views/profile.ejs'), {
 			        user: user
