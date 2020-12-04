@@ -1,5 +1,5 @@
 const { response } = require("express");
-const get = require("../hej")
+const get = require("../controllers/userscontroller")
 const expect = require("chai").expect
 
 //Arrange
@@ -23,4 +23,4 @@ describe("get()", function(){
        expect(res).to.be.equal(exp)
     });
 })
-
+*/

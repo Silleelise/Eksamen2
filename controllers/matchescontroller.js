@@ -1,6 +1,6 @@
 //var User = require('../models/user');
 var path = require('path');
-var config = require('../databaseconfig.js');
+var config = require('../databasemysql.js');
 var con = config.connection;
 
 // Display list of all users.
@@ -32,7 +32,7 @@ exports.show_possible_match = function(req, res) {
 				    });
 
 				} else {
-					res.send('There are no more possible matches!');
+					res.send('There are no more users to match with!');
 				}			
 				res.end();
 			});

@@ -1,7 +1,7 @@
 //
 var path = require('path');
 
-var config = require('../databaseconfig.js');
+var config = require('../databasemysql.js');
 var con = config.connection;
 
 // Display detail page for a specific user.
@@ -39,6 +39,16 @@ exports.login_post = function(req, res) {
 		response.end();
 	}
 };
+
+/*con.connect(function(err) {
+	if (err) throw err;
+	var sql = 'DELETE FROM users WHERE email = ?';,
+	con.query(sql, function (err, result) {
+	  if (err) throw err;
+	  console.log("Number of records deleted: " + result.affectedRows);
+	});
+  });
+  */
 
 exports.logout = function(req, res) {
 

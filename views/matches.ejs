@@ -1,4 +1,15 @@
-<h2>Matches</h2>
+<body style="background-color: rgb(237, 167, 218);"></body>
+
+<head>
+  <title>Dating site</title>
+</head>
+
+<div>
+ <h1 style="color: rgb(225, 87, 193);">Dating site<img src="/images/loop.img" width = 10%></img></h1>
+ <h2 style="color: rgb(225, 87, 193);">Your matches</h2>
+</div>
+
+<div style="color: #ff0000;">
 <% matches.forEach(function(matches) { %>
 		<% if (matches.ori_user_name == user_name) { %>
 	        <li>
@@ -9,4 +20,10 @@
 	            <strong><%= matches.ori_user_name %></strong>
 	        </li>
         <% }%>
-    <% }); %>
+	<% }); %>
+</div>
+<br></br>
+	
+	<div>
+		<a href="/user" style="color: rgb(225, 87, 193);">Back to your profile</a>
+	</div>

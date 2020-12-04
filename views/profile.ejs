@@ -1,14 +1,22 @@
-<h2>Profile</h2>
-<p>User email: <%= user.email %></p>
-<p>Username: <%= user.name %></p>
-<br><br>
-<p>You are interested in: <%= user.interest %> 
-<br></br>
-<a href="/matches/get-more">Meet other singles here</p>
+<body style="background-color: rgb(237, 167, 218);"></body>
+<head>
+    <title>Dating site</title>
+ </head>
+  
+  <div>
+   <h1 style="color: rgb(225, 87, 193);">Dating site<img src="/images/loop.img" width = 10%></img></h1>
+   <h2 style="color: rgb(225, 87, 193);">Profile</h2>
+  </div>
+
+<p style="color: rgb(225, 87, 193);">Your email: <%= user.email %></p>
+<p style="color: rgb(225, 87, 193);">Username: <%= user.name %></p>
+<p style="color: rgb(225, 87, 193);">You are interested in <%= user.interest %>s
+<br></br><br></br>
+<a href="/matches/get-more" style ="color: rgb(231, 13, 13);">Meet other singles here</p>
 <div>
-<a href="/matches"> See all your matches </a>
+<a href="/matches" style ="color: rgb(231, 13, 13);"> See all your matches </a>
 </div>
 <br></br>
 <div>
-<a href="/logout">Log out</a>
+<a href="/logout" style="color: #ff0000;">Log out</a>
 </div>

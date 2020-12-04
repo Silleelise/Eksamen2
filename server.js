@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var cors = require('cors');
 
-var allRoutes = require('./routes/web');
+var allRoutes = require('./routes/app');
 
 var app = express();
 app.use(session({
