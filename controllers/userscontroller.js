@@ -1,12 +1,10 @@
-//var User = require('../models/user');
 var path = require('path');
-
 var config = require('../databasemysql.js');
 var con = config.connection;
 
 // Display list of all users.
 exports.user_list_possible_matches = function(req, res) {
-    res.send('NOT IMPLEMENTED: user possible matches list');
+    res.send('NOT IMPLEMENTED: user potential matches list');
 };
 
 // Display detail page for a specific user.

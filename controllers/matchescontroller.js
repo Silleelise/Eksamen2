@@ -1,12 +1,11 @@
-//var User = require('../models/user');
 var path = require('path');
 var config = require('../databasemysql.js');
 var con = config.connection;
 
-// Display list of all users.
+// Viser liste over alle brugere der er oprettet i mysqql
 exports.show_possible_match = function(req, res) {
    if(req.session.loggedin == true && req.session.email) {
-
+		//Hvis bruger er logget ind, fetches 
    		function fetchID(callback) {
 	   		con.query('SELECT * FROM users WHERE email = ?', [req.session.email], function(error, results, fields) {
 				if (results.length > 0) {
@@ -16,8 +15,9 @@ exports.show_possible_match = function(req, res) {
 			});
 		   }
 		
-   		var last_match_id = 0; 
-
+		   var last_match_id = 0; 
+		   
+		   //Itererer igennem brugerne i systemet  
    		fetchID(function(result){  
 		    last_match_id = result.last_match_check_id; 
 
@@ -26,13 +26,12 @@ exports.show_possible_match = function(req, res) {
 				if (results.length > 0) {
 					
 					var user = results[0];
-
-					res.render(path.join(__dirname + '/../views/potentialmatch'), {
+					res.render(path.join(__dirname + '/../views/potentialmatch'), { 
 				        user: user
 				    });
 
 				} else {
-					res.send('There are no more users to match with!');
+					res.send('There are no more users to match with!'); //Når der ikke er flere opretterede brugere i mysql 
 				}			
 				res.end();
 			});
@@ -43,7 +42,7 @@ exports.show_possible_match = function(req, res) {
 		
 	}
 };
-
+//dislike function
 exports.make_dislike_match = function(req, res) {
    if(req.session.loggedin == true && req.session.email) {
 
@@ -65,7 +64,7 @@ exports.make_dislike_match = function(req, res) {
    		fetchID(function(user){  
 		    current_user = user; 
 
-		    //update last_match_check_id
+		    //Opdaterer last_match_check_id i mysql users table 
    			con.query('UPDATE users SET last_match_check_id = ? WHERE email = ?', [match_id, req.session.email], function(error, results, fields) {});
 
 	   		switch(what_to_do) {
@@ -112,6 +111,7 @@ exports.make_dislike_match = function(req, res) {
 	}
 };
 
+//Se alle matches
 exports.see_all_matches = function(req, res) {
    if(req.session.loggedin == true && req.session.email) {
 
