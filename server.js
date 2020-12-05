@@ -1,26 +1,27 @@
-var express = require('express');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var path = require('path');
-var cors = require('cors');
+const express = require('express'); //require express framework
+const server = express(); //create instance 
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const path = require('path');
+const cors = require('cors');
+const allRoutes = require('./routes/app');
 
-var allRoutes = require('./routes/app');
 
-var app = express();
-app.use(session({
+
+server.use(session({
 	secret: 'secret',
 	resave: true,
 	saveUninitialized: true
 }));
 
-app.use(cors());
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json());
-app.use(express.static(__dirname + '/views'));
-app.set('view engine', 'ejs');
+server.use(cors());
+server.use(bodyParser.urlencoded({extended : true}));
+server.use(bodyParser.json());
+server.use(express.static(__dirname + '/views'));
+server.set('view engine', 'ejs');
 
-app.use('/', allRoutes);
+server.use('/', allRoutes);
 
-app.listen(3500);
+server.listen(3500);
 
-module.exports = app;
+module.exports = server;

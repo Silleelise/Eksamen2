@@ -1,26 +1,33 @@
-const { response } = require("express");
+/*const { response } = require("express");
 const get = require("../controllers/userscontroller")
 const expect = require("chai").expect
+*/
+
 
 //Arrange
 
 //Act
 
 //Assert
+const chai = require('chai');
+const { response } = require ('express');
+const expect = require ('chai').expect
+const fetch = require("node-fetch");
+const chaiHttp = require('chai-http')
+const should = chai.should();
 
-//Phillips testing
-/*const { response } = require("express");
-const get = require("../hej")
-const expect = require("chai").expect
+chai.use(chaiHttp)
 
-describe("get()", function(){  
-    it('should return > Hello World <', function () {
-       let res = ''
-       let exp = "Hello World"
-        get().then(response  => {
-          res = response.data
-       })
-       expect(res).to.be.equal(exp)
-    });
+
+describe("test", ()=> { //den tester for kode 200, altså at vi får fat i 200
+    it("beskriv testen", (done)=> {
+        chai
+        .request("http://localhost:3500")
+        .get('/')
+        .end((err, res)=> {
+            res.should.have.status(200);
+            // console.log(res)
+            done();
+        })
+    })
 })
-*/

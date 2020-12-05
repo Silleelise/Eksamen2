@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-// Require controller modules.
+// Require controller modules
 var user_controller = require("../controllers/userscontroller");
 var index_controller = require("../controllers/indexcontroller");
 var matches_controller = require("../controllers/matchescontroller");
@@ -45,10 +45,10 @@ router.get("/user/:id", user_controller.user_detail);
 router.get("/users", user_controller.user_list_possible_matches);
 
 // Matches CRUD
-router.get("/matches/get-more", matches_controller.show_possible_match);
+router.get("/yourmatches/morematches", matches_controller.show_possible_match);
 
-router.post("/matches/:id/:name", matches_controller.make_skip_match);
+router.post("/yourmatches/:id/:name", matches_controller.make_dislike_match);
 
-router.get("/matches", matches_controller.see_all_matches);
+router.get("/yourmatches", matches_controller.see_all_matches);
 
 module.exports = router;

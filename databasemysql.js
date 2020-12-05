@@ -10,11 +10,11 @@ var connection = mysql.createConnection(config);
 
 connection.connect(function(err) {
   if (err) {
-    console.log('error connecting: ' + err.stack);
+    console.log('internal server failed: ' + err.stack);
     return;
   }
 
-  console.log('connected as id ' + connection.threadId);
+  console.log('connected' + connection.threadId);
 });
   
 module.exports = {

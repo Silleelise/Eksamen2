@@ -1,8 +1,7 @@
-//
 var path = require('path');
-
 var config = require('../databasemysql.js');
 var con = config.connection;
+var alert
 
 // Display detail page for a specific user.
 exports.frontpage_get = function(req, res) {
@@ -30,12 +29,12 @@ exports.login_post = function(req, res) {
 
 				res.redirect('/user');
 			} else {
-				res.send('Incorrect Username and/or Password!');
+				res.send('User does not exsist');
 			}			
 			res.end();
 		});
 	} else {
-		response.send('Please enter Username and Password!');
+		response.send('Please enter user email and password!');
 		response.end();
 	}
 };

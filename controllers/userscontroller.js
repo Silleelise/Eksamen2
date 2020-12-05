@@ -12,7 +12,7 @@ exports.user_list_possible_matches = function(req, res) {
 // Display detail page for a specific user.
 exports.user_detail = function(req, res) {
 
-	if(req.session.loggedin == true && req.session.email) {
+	if(req.session.loggedin && req.session.email) {
 		con.query('SELECT * FROM users WHERE email = ?', [req.session.email], function(error, results, fields) {
 			if (results.length > 0) {
 				var user = results[0];
@@ -24,7 +24,7 @@ exports.user_detail = function(req, res) {
 			    });
 
 			} else {
-				res.send('Incorrect Username and/or Password!');
+				res.send('User does not exist!');
 			}			
 			res.end();
 		});
@@ -38,17 +38,18 @@ exports.user_create_get = function(req, res) {
 
 // Handle user create on POST.
 exports.user_create_post = function(req, res) {
-    var email = req.body.email;
-	var password = req.body.password;
 	var name = req.body.name;
-	var interest = req.body.interest;
 	var gender = req.body.gender;
+	var interest = req.body.interest;
+	var email = req.body.email;
+	var password = req.body.password;
+	
 
 	if (email && password) {
 		var sql = "INSERT INTO users (name, gender, interest, email, password) VALUES (?, ?, ?, ?, ?)";
-		con.query(sql, [name, gender, interest, email, password], function (err, result) {
-			if (err) {
-				throw err;
+		con.query(sql, [name, gender, interest, email, password], function (error, result) {
+			if (error) {
+				throw error;
 			} else {
 				req.session.loggedin = true;
 				req.session.email = email;
@@ -56,7 +57,7 @@ exports.user_create_post = function(req, res) {
 			} 
 		});
 	} else {
-		res.send('Please enter Username and Password!');
+		res.send('Please fill out form!');
 		res.end();
 	}
 };

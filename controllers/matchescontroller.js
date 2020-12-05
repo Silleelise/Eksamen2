@@ -27,7 +27,7 @@ exports.show_possible_match = function(req, res) {
 					
 					var user = results[0];
 
-					res.render(path.join(__dirname + '/../views/possibleMatch'), {
+					res.render(path.join(__dirname + '/../views/potentialmatch'), {
 				        user: user
 				    });
 
@@ -44,7 +44,7 @@ exports.show_possible_match = function(req, res) {
 	}
 };
 
-exports.make_skip_match = function(req, res) {
+exports.make_dislike_match = function(req, res) {
    if(req.session.loggedin == true && req.session.email) {
 
    		var match_id = req.params.id;
@@ -73,11 +73,13 @@ exports.make_skip_match = function(req, res) {
 
 					//Check if Match
 					   		function checkMatch(callback) { 
-					   			con.query('SELECT * FROM matches WHERE ori_user_id = ? AND match_user_id = ?', [match_id, current_user.id], function(error, results, fields) {
+					   			con.query('SELECT * FROM matches WHERE first_user_id = ? AND second_user_id = ?', [match_id, current_user.id], function(error, results, fields) {
 									if (results.length > 0) {
 										var match = results[0];
-										
-										return callback(match);
+										console.log("Its a match")
+								
+										return callback(match)
+								
 									} else {
 										var match = 'no-match';
 										return callback(match);
@@ -87,20 +89,20 @@ exports.make_skip_match = function(req, res) {
 
 					   		checkMatch(function(match) {
 					   			if(match == 'no-match') {
-					   				var sql = "INSERT INTO matches (ori_user_id, match_user_id, ori_user_name, match_user_name) VALUES (?, ?, ?, ?)";
-									con.query(sql, [current_user.id, match_id, current_user.name, match_name], function (err, result) {
-										console.log(err);
+					   				var sql = "INSERT INTO matches (first_user_id, second_user_id, first_user_name, second_user_name) VALUES (?, ?, ?, ?)";
+									con.query(sql, [current_user.id, match_id, current_user.name, match_name], function (error, result) {
+										console.log(error);
 									});
 					   			} else {
-					   				con.query('UPDATE matches SET is_a_match = 1 WHERE ori_user_id = ? AND match_user_id = ?', [match_id, current_user.id], function(error, results, fields) {});
+					   				con.query('UPDATE matches SET is_a_match = 1 WHERE first_user_id = ? AND second_user_id = ?', [match_id, current_user.id], function(error, results, fields) {});
 					   			}
 					   		});
 
-						res.redirect('/matches/get-more');
+						res.redirect('/yourmatches/morematches');
 	   				break;
 
 	   			default:
-	   				res.redirect('/matches/get-more');
+	   				res.redirect('/yourmatches/morematches');
 	   		}
 
 		});
@@ -129,7 +131,7 @@ exports.see_all_matches = function(req, res) {
 		   	}
 
 		   	getUser(function(current_user) {
-		   		con.query("SELECT * FROM matches WHERE (match_user_id = ? AND is_a_match = 1) OR (ori_user_id = ? AND is_a_match = 1)", [current_user.id, current_user.id], function(error, results, fields) {
+		   		con.query("SELECT * FROM matches WHERE (second_user_id = ? AND is_a_match = 1) OR (first_user_id = ? AND is_a_match = 1)", [current_user.id, current_user.id], function(error, results, fields) {
 					if (results.length > 0) {
 						var matches = results;
 
