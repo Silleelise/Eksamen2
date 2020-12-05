@@ -1,1 +1,31 @@
-<mxfile host="app.diagrams.net" modified="2020-12-05T22:10:35.105Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.3 Safari/605.1.15" version="13.10.5" etag="V7b0CQyJOP4jdREujtMF" type="github"><diagram id="kVH0XKKhBWsqY24IV69-">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2020-12-05T22:11:07.482Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.3 Safari/605.1.15" etag="lhnG18QdtRuHysi6DW_h" version="13.10.9" type="github">
+  <diagram id="kVH0XKKhBWsqY24IV69-" name="Page-1">
+    <mxGraphModel dx="565" dy="492" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cUrlxnih30TSP2FscqfN-1" value="Users" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="90" width="170" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="cUrlxnih30TSP2FscqfN-2" value="Primary key: userID" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cUrlxnih30TSP2FscqfN-1">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cUrlxnih30TSP2FscqfN-3" value="name: string&#xa;gender: string &#xa;email: string&#xa;password: string&#xa;interest: string&#xa;last_match_check_id: integer&#xa;_______________________&#xa;&#xa;like()&#xa;deleteMatch()&#xa;viewMatches()&#xa;&#xa;&#xa;&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cUrlxnih30TSP2FscqfN-1">
+          <mxGeometry y="52" width="170" height="188" as="geometry" />
+        </mxCell>
+        <mxCell id="cUrlxnih30TSP2FscqfN-4" value="Matches" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="23" width="160" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="cUrlxnih30TSP2FscqfN-5" value="Primary key: matchID&#xa;Foreign key. userID&#xa;&#xa;first_user_id_: integer&#xa;second_user_id: integer&#xa;is_a_match: integer&#xa;first_user_name: string&#xa;second_user_name: string&#xa;______________________&#xa;&#xa;Like&#xa;Dislike" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cUrlxnih30TSP2FscqfN-4">
+          <mxGeometry y="26" width="160" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="cUrlxnih30TSP2FscqfN-6" value="" style="endArrow=none;html=1;entryX=-0.025;entryY=0.938;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="cUrlxnih30TSP2FscqfN-3" target="cUrlxnih30TSP2FscqfN-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="211" y="246" as="sourcePoint" />
+            <mxPoint x="330" y="30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
