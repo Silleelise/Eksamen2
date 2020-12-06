@@ -4,20 +4,37 @@
   <title>Dating site</title>
 </head>
 
+
 <div>
  <h1 style="color: rgb(225, 87, 193);">Dating site<img src="/images/loop.img" width = 10%></img></h1>
  <h2 style="color: rgb(225, 87, 193);">Your matches</h2>
 </div>
 
 <div style="color: #ff0000;">
+
+<% if (match_deleted == "true") { %>
+	<script>
+		alert("Match deleted");
+		//console.log("ALERT HAS BEEN SHOWN");
+	</script>
+<% } %>
+
 <% matches.forEach(function(matches) { %>
 		<% if (matches.first_user_name == user_name) { %>
 	        <li>
-	            <strong><%= matches.second_user_name %></strong>
+				<strong><%= matches.second_user_name %></strong>
+				<form action="/deletematch" method="POST">
+					<input type="hidden" value="<%= matches.id %>" name="match_id" />
+					<button type="submit">Delete</button>
+				</form>
 	        </li>
         <% } else { %>
         	<li>
-	            <strong><%= matches.first_user_name %></strong>
+				<strong><%= matches.first_user_name %></strong>
+				<form action="/deletematch" method="POST">
+					<input type="hidden" value="<%= matches.id %>" name="match_id" />
+					<button type="submit">Delete</button>
+				</form>
 	        </li>
         <% }%>
 	<% }); %>

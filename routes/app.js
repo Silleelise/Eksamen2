@@ -49,6 +49,8 @@ router.get("/yourmatches/morematches", matches_controller.show_possible_match);
 
 router.post("/yourmatches/:id/:name", matches_controller.make_dislike_match);
 
-router.get("/yourmatches", matches_controller.see_all_matches);
+router.post("/deletematch", matches_controller.delete_match);
+
+router.get("/yourmatches/:deleted", matches_controller.see_all_matches);
 
 module.exports = router;
