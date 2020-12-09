@@ -6,6 +6,7 @@ const path = require("path");
 const cors = require("cors");
 const allRoutes = require("./routes/app");
 
+//Cookie local storage
 server.use(
   session({
     secret: "secret",

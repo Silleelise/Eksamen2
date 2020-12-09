@@ -3,9 +3,9 @@ var config = require("../databasemysql.js");
 var con = config.connection;
 
 // Viser liste over alle brugere der er oprettet i mysqql
-exports.show_possible_match = function (req, res) {
+exports.show_potential_match = function (req, res) {
   if (req.session.loggedin == true && req.session.email) {
-    //Hvis bruger er logget ind, fetches
+    //Hvis bruger er logget ind, fetches callback
     function fetchID(callback) {
       con.query(
         "SELECT * FROM users WHERE email = ?",
@@ -23,7 +23,7 @@ exports.show_possible_match = function (req, res) {
 
     //Itererer igennem brugerne i systemet
     fetchID(function (result) {
-      last_match_id = result.last_match_check_id;
+      last_match_id = result.last_interaktion_id;
 
       con.query(
         "SELECT * FROM users WHERE interest = ? AND gender = ? AND id > ? ORDER BY id ASC",
@@ -48,9 +48,9 @@ exports.make_dislike_match = function (req, res) {
   if (req.session.loggedin == true && req.session.email) {
     var match_id = req.params.id;
     var match_name = req.params.name;
-    var what_to_do = req.body.what_to_do;
+    var like_or_dislike = req.body.like_or_dislike;
 
-    var current_user = null;
+    //var current_user = null;
 
     function fetchID(callback) {
       con.query(
@@ -68,28 +68,27 @@ exports.make_dislike_match = function (req, res) {
     fetchID(function (user) {
       current_user = user;
 
-      //Opdaterer last_match_check_id i mysql users table
+      //Opdaterer last_interaktion_id i mysql users table
       con.query(
-        "UPDATE users SET last_match_check_id = ? WHERE email = ?",
+        "UPDATE users SET last_interaktion_id = ? WHERE email = ?",
         [match_id, req.session.email],
         function (error, results, fields) {}
       );
 
-      switch (what_to_do) {
+      switch (like_or_dislike) {
         case "match":
-          //Check if Match
+          //Tjekker om der er et match
           function checkMatch(callback) {
             con.query(
-              "SELECT * FROM matches WHERE first_user_id = ? AND second_user_id = ?",
+              "SELECT * FROM matches WHERE first_user_id = ? AND second_user_id = ?", //finder de to brugeres id i MySQL
               [match_id, current_user.id],
               function (error, results, fields) {
                 if (results.length > 0) {
-                  var match = results[0];
+                  var match = results[0]; //liket tilbage = match
                   console.log("Its a match");
-
                   return callback(match);
                 } else {
-                  var match = "no-match";
+                  var match = "not_a_match"; //ikke liket tilbage =not_a_match
                   return callback(match);
                 }
               }
@@ -97,21 +96,21 @@ exports.make_dislike_match = function (req, res) {
           }
 
           checkMatch(function (match) {
-            if (match == "no-match") {
+            if (match == "not_a_match") {
               var sql =
                 "INSERT INTO matches (first_user_id, second_user_id, first_user_name, second_user_name) VALUES (?, ?, ?, ?)";
               con.query(
                 sql,
                 [current_user.id, match_id, current_user.name, match_name],
                 function (error, result) {
-                  console.log(error);
+                  console.log(error); //Hvis der allerede er et like fra den anden bruger mod vedkommende som er logget, opdateres deres allerede eksisterende 'match' (møde) med match fra 0 til 1
                 }
               );
             } else {
               con.query(
-                "UPDATE matches SET is_a_match = 1 WHERE first_user_id = ? AND second_user_id = ?",
+                "UPDATE matches SET match = 1 WHERE first_user_id = ? AND second_user_id = ?",
                 [match_id, current_user.id],
-                function (error, results, fields) {}
+                function (error, results, fields) {}//Hvis der ikke er et like fra den bruger til vedkommende som er logget ind, så skal der oprettes et match (møde) i mySQL 
               );
             }
           });
@@ -130,7 +129,7 @@ exports.make_dislike_match = function (req, res) {
 exports.see_all_matches = function (req, res) {
   if (req.session.loggedin == true && req.session.email) {
     var match_id = req.params.id;
-    var what_to_do = req.body.what_to_do;
+    var like_or_dislike = req.body.like_or_dislike;
 
     function getUser(callback) {
       con.query(
@@ -146,8 +145,7 @@ exports.see_all_matches = function (req, res) {
     }
 
     getUser(function (current_user) {
-      con.query(
-        "SELECT * FROM matches WHERE (second_user_id = ? AND is_a_match = 1) OR (first_user_id = ? AND is_a_match = 1)",
+      con.query("SELECT * FROM matches WHERE (second_user_id = ? AND match = 1) OR (first_user_id = ? AND match = 1)",
         [current_user.id, current_user.id],
         function (error, results, fields) {
           if (results.length > 0) {
@@ -159,7 +157,7 @@ exports.see_all_matches = function (req, res) {
               match_deleted: req.params.deleted,
             });
           } else {
-            res.send("No matches.");
+            res.send("You dont have any matches :(");
           }
           res.end();
         }
@@ -170,7 +168,6 @@ exports.see_all_matches = function (req, res) {
 
 exports.delete_match = function (req, res) {
   if (req.session.loggedin == true && req.session.email) {
-    //con.query("SELECT * FROM matches WHERE (second_user_id = ? AND is_a_match = 1) OR (first_user_id = ? AND is_a_match = 1)", [current_user.id, current_user.id], function(error, results, fields) {
     con.query(
       "DELETE FROM matches WHERE id = ?",
       [req.body.match_id],

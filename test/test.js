@@ -7,7 +7,7 @@ const should = chai.should();
 chai.use(chaiHttp)
 
 
-describe("test", ()=> { //den tester for kode 200, altså at vi får fat i 200
+describe("test", ()=> { //den tester for kode 200 OK
     it("should test if the server is responsive, code 200", (done)=> {
         chai
         .request("http://localhost:3500")

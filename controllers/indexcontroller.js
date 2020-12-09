@@ -2,10 +2,10 @@ var path = require('path');
 var config = require('../databasemysql.js');
 var con = config.connection;
 
-// Viser en brugers profil når brugeren er logget ind på siden /user
+// Viser en brugers profil når brugeren er logget ind på siden /profile
 exports.frontpage_get = function(req, res) {
 	if(req.session.loggedin == true && req.session.email) {
-		res.redirect('/user');
+		res.redirect('/profile');
 	}
     res.sendFile(path.join(__dirname + '/../views/login.html'));
 };
@@ -27,7 +27,7 @@ exports.login_post = function(req, res) {
 				req.session.interest = user.interest;
 				req.session.gender = user.gender;
 
-				res.redirect('/user'); //Redirecter til /user hvis session == true og email og password eksisterer 
+				res.redirect('/profile'); //Redirecter til /profile hvis session == true og email og password eksisterer 
 			} else {
 				res.send('User does not exsist'); //ellers smider den denne string
 			}			

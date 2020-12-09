@@ -5,7 +5,7 @@
 </head>
 
 <div>
- <h1 style="color: rgb(225, 87, 193);">Dating site<img src="/images/loop.img" width = 10%></img></h1>
+ <h1 style="color: rgb(225, 87, 193);">Dating site<img src="/images/loop.png" width = 40%></img></h1>
  <h2 style="color: rgb(225, 87, 193);">Profile of potential match</h2>
 </div>
 
@@ -16,22 +16,22 @@
 <!-- Like -->
 <div> 
 	<form action="/yourmatches/<%= user.id %>/<%= user.name %>" method="POST">
-		<input type="hidden" name="what_to_do" id ="what_to_do" value="match">
-		<button type="submit">Like</submit>
+		<input type="hidden" name="like_or_dislike" id ="like_or_dislike" value="match">
+		<button type="submit" style="color: rgb(225, 87, 193);">Like</submit>
 	</form>
 </div>
 
 <!-- Dislke -->
 <div>
 	<form action="/yourmatches/<%= user.id %>/<%= user.name %>" method="POST">
-		<input type="hidden" name="what_to_do" id ="what_to_do" value="skip">
-		<button type="submit">Dislike</submit>
+		<input type="hidden" name="like_or_dislike" id ="like_or_dislike" value="dislike">
+		<button type="submit" style="color: rgb(225, 87, 193);">Dislike</submit>
 	</form>
 </div>
 <br></br>
 
 <div>
-	<a href="/user" style="color: rgb(225, 87, 193);">Back to your profile</a>
+	<a href="/profile" style="color: rgb(225, 87, 193);">Back to your profile</a>
 </div>
 
 
