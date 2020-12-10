@@ -22,7 +22,7 @@ exports.login_post = function(req, res) {
 
 				var user = results[0];
 
-				req.session.loggedin = true;
+				req.session.loggedin = true; //login session starter 
 				req.session.email = req.body.email;
 				req.session.interest = user.interest;
 				req.session.gender = user.gender;
@@ -34,7 +34,7 @@ exports.login_post = function(req, res) {
 			res.end();
 		});
 	} else {
-		response.send('Please enter user email and password!');
+		response.send('Please enter user email and password!'); //ellers 
 		response.end();
 	}
 };

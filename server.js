@@ -1,12 +1,12 @@
 const express = require("express"); //require express framework
-const server = express(); //create instance
-const session = require("express-session");
+const server = express();
+const session = require("express-session"); //require express-sessions til cookies
 const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
-const allRoutes = require("./routes/app");
+const allRoutes = require("./routes/app"); 
 
-//Cookie local storage
+//Session cookie
 server.use(
   session({
     secret: "secret",
@@ -18,11 +18,11 @@ server.use(
 server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
-server.use(express.static(__dirname + "/views"));
+server.use(express.static(__dirname + "/views")); //billede kan kun ligge i views
 server.set("view engine", "ejs");
 
 server.use("/", allRoutes);
 
-server.listen(3500);
+server.listen(3500); //Lytter på port 3500
 
 module.exports = server;

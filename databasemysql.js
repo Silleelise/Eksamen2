@@ -7,15 +7,14 @@ var config = {
   database: "Eksamen2",
 };
 
-var connection = mysql.createConnection(config);
+var connection = mysql.createConnection(config); //definerer MySQL connection
 
 connection.connect(function (err) {
   if (err) {
-    console.log("internal server failed: ");
+    console.log("internal server failed: "); //hvis der ikke cnnection til MySQL
     return;
   }
-
-  console.log("Connected"); //når der er forbindelse til severen, console logges der "connected" i terminalen
+  console.log("Connected"); //når der er forbindelse til MySQL console logges der "connected" i terminalen
 });
 
 module.exports = {

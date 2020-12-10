@@ -12,13 +12,15 @@
 
 <div style="color: #ff0000;">
 
+<!--Altert der fortæller at match er blevet slettet-->
 <% if (match_deleted == "true") { %>
 	<script>
 		alert("Match deleted");
-		//console.log("ALERT HAS BEEN SHOWN");
+		//console.log("MATCH DELETED ALERT");
 	</script>
 <% } %>
 
+<!--Slette match knappen med af typen hidden-->
 <% matches.forEach(function(matches) { %>
 		<% if (matches.first_user_name == user_name) { %>
 	        <li>
